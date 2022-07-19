@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { ApexOptions } from 'apexcharts';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -54,7 +55,7 @@ const options = {
       opacityTo: 0.3,
     },
   },
-};
+} as const;
 
 const series = [
   { name: 'Series1', data: [31, 120, 50, 8, 15, 6, 56] }
