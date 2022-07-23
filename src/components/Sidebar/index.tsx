@@ -4,6 +4,7 @@ import { SidebarNav } from "./SidebarNav";
 
 export function Sidebar() {
   const { isOpen, onClose } = useSidebarDrawer();
+  
   const isDrawerSidebar = useBreakpointValue({
     base: true,
     lg: false
@@ -16,11 +17,9 @@ export function Sidebar() {
           <DrawerContent bg="gray.800" p="4">
             <DrawerCloseButton mt="6" />
             <DrawerHeader mt="1">Navegação</DrawerHeader>
-
             <DrawerBody>
               <SidebarNav />
             </DrawerBody>
-
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
