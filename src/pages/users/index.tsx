@@ -14,7 +14,7 @@ export default function UserList() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/users')
+    fetch('https://dashgo-ashy.vercel.app/api/users')
     .then(response => response.json())
     .then(data => console.log(data))
   }, []);
