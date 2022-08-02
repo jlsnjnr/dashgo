@@ -49,7 +49,7 @@ export default function SignIn() {
           onSubmit={handleSubmit(handleSignIn)}
         >
           <Stack spacing="4">
-            <Input name="email" type="email" label="E-mail" error={errors.email} {...register("email")} />
+            <Input name="email" type="email" label="E-mail" {...register("email")} />
             <Input name="password" type="password" required label="Senha" {...register('password')} />
           </Stack>
           <Button isLoading={formState.isSubmitting} type="submit" mt="6" colorScheme="pink" bg='pink.500' color='white' size="lg">Entrar</Button>
