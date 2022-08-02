@@ -50,8 +50,6 @@ export default function CreateUser() {
             <Heading size="lg" fontWeight="normal">Criar usuário</Heading>
             <Divider my="6" borderColor="gray.800" />
 
-            
-
             <VStack spacing={["2", "8"]}>
               <SimpleGrid minChildWidth="240px" spacing="8" w="100%">
                 <Input error={errors.name} {...register("name")} name="name" type="text" label="Nome completo" />
