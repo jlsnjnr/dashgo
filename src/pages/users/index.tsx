@@ -1,35 +1,18 @@
 import { Box, Button, Checkbox, Flex, Heading, Icon, Spinner, Table, Tbody, Td, Text, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import { RiAddLine } from "react-icons/ri";
 import { Header } from "../../components/Header";
 import { Pagination } from "../../components/Pagination";
 import { Sidebar } from "../../components/Sidebar";
-import { useQuery } from '@tanstack/react-query';
-
+import { useUsers } from "../../services/hooks/useUsers";
+ 
 export default function UserList() {
-  const { data, isLoading, error, isFetching } = useQuery(['users'], async () => {
-     // fetch('https://dashgo-ashy.vercel.app/api/users')
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json();
+  const [page, setPage] = useState(1);
+  const { data, isLoading, error, isFetching } = useUsers(page);
 
-    const users = data.users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleString('pt-BR', {
-          day: '2-digit',
-          month: 'long',
-          year: 'numeric'
-        })
-      }
-    });
-
-    return users;
-  }, {
-    staleTime: 1000 * 5, // 5 segundos
-  });
+  console.log(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -89,7 +72,7 @@ export default function UserList() {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {data.map(user => {
+                    {data.users.map(user => {
                       return (
                         <Tr key={user.id}>
                           <Td px={["4","4","6"]}>
@@ -110,7 +93,11 @@ export default function UserList() {
                   </Tbody>
                 </Table>
 
-                <Pagination />
+                <Pagination 
+                  totalCountOfRegisters={data.totalCount} 
+                  currentPage={page} 
+                  onPageChange={setPage} 
+                />
               </>
             )}
 
