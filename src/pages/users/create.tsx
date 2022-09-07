@@ -38,7 +38,7 @@ export default function CreateUser() {
       }
     })
 
-    return response.data.user; 
+    return response.data.user;
   }, {
     onSuccess: () => {
       queryClient.invalidateQueries(['users'])
@@ -48,7 +48,7 @@ export default function CreateUser() {
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createUserFormSchema),
   });
-  
+
   const { errors } = formState;
 
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (values, event) => {
@@ -57,7 +57,7 @@ export default function CreateUser() {
     router.push('/users');
   }
 
-  return (  
+  return (
     <>
       <Head>
         <title>Criar usuário | dashgo.</title>
@@ -66,7 +66,7 @@ export default function CreateUser() {
         <Header />
         <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
           <Sidebar />
-          
+
           <Box as="form" onSubmit={handleSubmit(handleCreateUser)} flex="1" borderRadius={8} bg="gray.800" p={["8", "8"]}>
             <Heading size="lg" fontWeight="normal">Criar usuário</Heading>
             <Divider my="6" borderColor="gray.800" />
@@ -78,11 +78,11 @@ export default function CreateUser() {
               </SimpleGrid>
 
               <SimpleGrid minChildWidth="240px" spacing="8" w="100%">
-                <Input {...register("password")} name="password" type="password" label="Senha" /> 
+                <Input {...register("password")} name="password" type="password" label="Senha" />
                 <Input {...register("password_confirmation")} name="password_confirmation" label="Confirmar senha" type="password" />
               </SimpleGrid>
             </VStack>
-            
+
 
             <Flex mt="8" justify="flex-end">
               <HStack spacing="4">
